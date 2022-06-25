@@ -11,3 +11,8 @@ body{background-color: black; color: white;}
 a{text-decoration: none; color: white;}
 .memo{ width: 300px;}
 .donder_image img {width: 20%; border-radius: 100%;}
+.image img { width : 100%}
+.login {margin-top:30px;width: 50%; margin: 0 auto;}
+.login_wrapper { margin-top: 50px;}
+.text_01 { text-align: center;}
+.loginBtn { text-align: right;}
