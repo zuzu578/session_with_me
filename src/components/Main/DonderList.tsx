@@ -40,6 +40,10 @@ const DonderList = () => {
         }
         
     }
+
+    const goRegiFnc = () => {
+        window.location.href = '/donderRegist';
+    }
     return (
         <div className='donderList'>
               <div className='selectBox_wrapper'>
@@ -71,14 +75,11 @@ const DonderList = () => {
                 </select>
                 </div>
                 <div className='donderRegBtn'>
-                     <button type="button" className="btn btn-success">동더 등록하기</button>
+                     <button type="button" className="btn btn-success" onClick={goRegiFnc}>동더 등록하기</button>
                 </div>
             </div>
 
             <DonderSessionList/>
-
-            
-           
         </div>
 
     )
