@@ -7,21 +7,24 @@ import { removeCookie } from '../../utils/cookie';
 
 
 const DonderList = (userData : any) => {
-    const [getDonder , setDonder] = useState('');
+    // {contents:'',createdTime:'',danwi:'',danwiRank:'',donderName:'',location:'',mydonImage:'',twitterAccount:''}
     const [isUpdated , setIsUpdated] = useState(false); 
-    const [ donderData , setDonderData ] = useState({});
 
     useEffect(()=>{
         // const result = tagReplacer(userData.props);
         getDonderList()
         .then((res:any)=>{
-            console.log(res.data);
+            console.log('res',res.data);
+            setDonderData(res.data);
+
         })
         .catch((e)=>{
             e.message;
         })
 
     },[isUpdated])
+    const [ donderData , setDonderData ] = useState([]);
+    
 
     const getDanwi = (e:any) => {
         console.log(e.target.value);
@@ -100,8 +103,8 @@ const DonderList = (userData : any) => {
                 : ''}
                 
             </div>
-
-            <DonderSessionList/>
+                   
+            <DonderSessionList props = {donderData}/>
         </div>
 
     )

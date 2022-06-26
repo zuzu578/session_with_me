@@ -1,7 +1,13 @@
-const DonderSessionList = () => {
+import { useEffect } from 'react';
+export const DonderSessionList = (data : any ) => {
+
+    useEffect(()=>{
+        console.log('props data =>' , data);
+    },[])
 
     return (
         <>
+       
         <div className="donderSessionList">
         <table className="table">
              <thead className="thead">
@@ -59,5 +65,3 @@ const DonderSessionList = () => {
         </>
     )
 }
-
-export {DonderSessionList};

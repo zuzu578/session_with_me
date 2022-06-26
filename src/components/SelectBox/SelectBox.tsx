@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-const SelectBox = (props:any) => {
+const SelectBox = (props:any , getLocationValue : any) => {
 
     return(
         <div>
             <div className='selectBox_wrapper'>
                 <div className='selectbox_01'>
                
-                <select className="form-select">
+                <select className="form-select" onChange={getLocationValue}>
                     <option selected value=''>지역</option>
                     {props.props.location.map((item : any)=>{
                         return(
