@@ -2,13 +2,17 @@ import { useEffect, useState } from 'react';
 import { getDonderList } from '../../apis/getDonderList';
 import { location,dan } from '../../utils/constantValue';
 import { DonderSessionList } from '../DonderList/DonderList';
+import { tagReplacer } from '../../utils/tagReplacer';
+import { removeCookie } from '../../utils/cookie';
 
 
-const DonderList = () => {
+const DonderList = (userData : any) => {
     const [getDonder , setDonder] = useState('');
     const [isUpdated , setIsUpdated] = useState(false); 
+    const [ donderData , setDonderData ] = useState({});
 
     useEffect(()=>{
+        // const result = tagReplacer(userData.props);
         getDonderList()
         .then((res:any)=>{
             console.log(res.data);
@@ -42,7 +46,19 @@ const DonderList = () => {
     }
 
     const goRegiFnc = () => {
-        window.location.href = '/donderRegist';
+        if(userData.props){
+            alert('로그인함 ');
+        }else{
+            alert('동더히로바 로그인후 이용가능합니다.');
+            window.location.href = '/donderRegist';
+        }
+  
+    }
+
+    const logOut = () => {
+        removeCookie();
+        alert('로그아웃 되었습니다.');
+        window.location.reload();
     }
     return (
         <div className='donderList'>
@@ -77,6 +93,12 @@ const DonderList = () => {
                 <div className='donderRegBtn'>
                      <button type="button" className="btn btn-success" onClick={goRegiFnc}>동더 등록하기</button>
                 </div>
+                {userData.props ? 
+                <div className='logOut'>
+                    <button type="button"  onClick={logOut}className="btn btn-danger">로그아웃</button>
+                </div>
+                : ''}
+                
             </div>
 
             <DonderSessionList/>
