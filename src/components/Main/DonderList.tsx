@@ -47,10 +47,10 @@ const DonderList = (userData : any) => {
 
     const goRegiFnc = () => {
         if(userData.props){
-            alert('로그인함 ');
+            window.location.href = '/DonderRegist';
         }else{
             alert('동더히로바 로그인후 이용가능합니다.');
-            window.location.href = '/donderRegist';
+            window.location.href = '/Login';
         }
   
     }
