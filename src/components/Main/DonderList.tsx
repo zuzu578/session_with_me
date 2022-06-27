@@ -14,8 +14,8 @@ const DonderList = (userData : any) => {
       
         getDonderList()
         .then((res:any)=>{
+            console.log('res.data =>' ,res.data);
             const result = tagReplacer(res.data);
-            console.log('result' , result);
             setDonderData(result);
         })
         .catch((e)=>{
@@ -103,8 +103,8 @@ const DonderList = (userData : any) => {
                 : ''}
                 
             </div>
-                   
-            <div className="donderSessionList">
+        {donderData.length !== 0 ? 
+        <div className="donderSessionList">
         <table className="table">
              <thead className="thead">
                  <tr>
@@ -113,6 +113,8 @@ const DonderList = (userData : any) => {
                      <th> <p className='table_head'>지역</p></th>
                      <th> <p className='table_head'>트위터 계정</p></th>
                      <th> <p className='table_head'>메모</p></th>
+                     <th> <p className='table_head'>작성일</p></th>
+                     
                      
                  </tr>
              </thead>
@@ -128,7 +130,7 @@ const DonderList = (userData : any) => {
                        쥬쥬 
                     </div>
                     </td>
-                     <td> <img src={'https://donderhiroba.jp/'+item.danwi}/>({item.danwiRank}) </td>
+                     <td> <img src={'https://donderhiroba.jp/'+item.danwi}/> </td>
                      <td> {item.location} </td>
                      <td> <a href={`https://twitter.com/${item.twitterAccount}`}>{item.twitterAccount}</a></td>
                      <td>
@@ -143,27 +145,16 @@ const DonderList = (userData : any) => {
                      )
                  })}
                  
-                 {/* {fileData.map((item)=>{
-                     return(
-                         <tr>
-                           <td>
-                               {item.userName}
-                           </td>
-                           <td>
-                               <a href={`http://localhost:8080/fileDownload?fileName=${item.fileName}&filePath=${item.filePath}`}> {item.fileName}</a>
-                           </td>
-                           <td>
-                               {item.comments}
-                           </td>
-                           <td>
-                               {item.createdTime}
-                           </td>
-                         </tr>
-                     )
-                 })}  */}
+              
              </tbody>
          </table> 
         </div>
+         : 
+         <div className='except'>
+            <h3> 데이터가 존재하지 않습니다.</h3>   
+        </div>
+         }
+        
         </div>
 
     )
