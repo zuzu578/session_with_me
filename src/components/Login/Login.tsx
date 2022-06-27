@@ -24,6 +24,7 @@ const DonderRegistComponents = () => {
         .then((res : any)=>{
             if(!res.data){
                 alert('계정 정보를 다시한번 확인해주세요.');
+                setIsLoading(false);
                 return;
             }
         setCookie('account',res.data,{path:"/",secure:true,sameSite:'none'});

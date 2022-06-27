@@ -7,16 +7,16 @@ import { removeCookie } from '../../utils/cookie';
 
 
 const DonderList = (userData : any) => {
-    // {contents:'',createdTime:'',danwi:'',danwiRank:'',donderName:'',location:'',mydonImage:'',twitterAccount:''}
+  
     const [isUpdated , setIsUpdated] = useState(false); 
 
     useEffect(()=>{
-        // const result = tagReplacer(userData.props);
+      
         getDonderList()
         .then((res:any)=>{
-            console.log('res',res.data);
-            setDonderData(res.data);
-
+            const result = tagReplacer(res.data);
+            console.log('result' , result);
+            setDonderData(result);
         })
         .catch((e)=>{
             e.message;
@@ -104,7 +104,66 @@ const DonderList = (userData : any) => {
                 
             </div>
                    
-            <DonderSessionList props = {donderData}/>
+            <div className="donderSessionList">
+        <table className="table">
+             <thead className="thead">
+                 <tr>
+                     <th><p className='table_head'>동더이름</p></th>
+                     <th><p className='table_head'>단위</p></th>
+                     <th> <p className='table_head'>지역</p></th>
+                     <th> <p className='table_head'>트위터 계정</p></th>
+                     <th> <p className='table_head'>메모</p></th>
+                     
+                 </tr>
+             </thead>
+             <tbody>
+                 {donderData.map((item)=>{
+                     return(
+                         <div>
+                            <tr>
+                     <td> 
+                    <div className="donder_image">
+                    
+                       <img src={item.mydonImage}/>
+                       쥬쥬 
+                    </div>
+                    </td>
+                     <td> <img src={'https://donderhiroba.jp/'+item.danwi}/>({item.danwiRank}) </td>
+                     <td> {item.location} </td>
+                     <td> <a href={`https://twitter.com/${item.twitterAccount}`}>{item.twitterAccount}</a></td>
+                     <td>
+                         <div className="memo">
+                          {item.contents}
+                          </div>
+                    </td>
+                    <td> {item.createdTime}</td>
+                     
+                 </tr>
+                         </div>
+                     )
+                 })}
+                 
+                 {/* {fileData.map((item)=>{
+                     return(
+                         <tr>
+                           <td>
+                               {item.userName}
+                           </td>
+                           <td>
+                               <a href={`http://localhost:8080/fileDownload?fileName=${item.fileName}&filePath=${item.filePath}`}> {item.fileName}</a>
+                           </td>
+                           <td>
+                               {item.comments}
+                           </td>
+                           <td>
+                               {item.createdTime}
+                           </td>
+                         </tr>
+                     )
+                 })}  */}
+             </tbody>
+         </table> 
+        </div>
         </div>
 
     )
